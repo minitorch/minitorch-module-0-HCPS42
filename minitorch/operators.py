@@ -97,4 +97,26 @@ def relu_back(x: float, y: float) -> float:
 # - prod: take the product of lists
 
 
-# TODO: Implement for Task 0.3.
+def map(fn: Callable[[float], float], xs: Iterable[float]) -> Iterable[float]:
+    return [fn(x) for x in xs]
+
+def zipWith(fn: Callable[[float, float], float], xs: Iterable[float], ys: Iterable[float]) -> Iterable[float]:
+    return [fn(x, y) for x, y in zip(xs, ys)]
+
+def reduce(fn: Callable[[float, float], float], xs: Iterable[float], init: float) -> float:
+    result = init
+    for x in xs:
+        result = fn(x, result)
+    return result
+
+def negList(xs: Iterable[float]) -> Iterable[float]:
+    return map(neg, xs)
+
+def addLists(xs: Iterable[float], ys: Iterable[float]) -> Iterable[float]:
+    return zipWith(add, xs, ys)
+
+def sum(xs: Iterable[float]) -> float:
+    return reduce(add, xs, 0.0)
+
+def prod(xs: Iterable[float]) -> float:
+    return reduce(mul, xs, 1.0)
