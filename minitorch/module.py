@@ -41,7 +41,7 @@ class Module:
         for module in self.modules():
             module.eval()
 
-    def named_parameters(self) -> Sequence[Tuple[str, Parameter]]:
+    def named_parameters(self, prefix="") -> Sequence[Tuple[str, Parameter]]:
         """Collect all the parameters of this module and its descendents.
 
         Returns
@@ -50,12 +50,12 @@ class Module:
 
         """
         result = []
-        for key, param in self._parameters.items():
-            result.append((key, param))
-        for key, module in self._modules.items():
-            descendants = module.named_parameters()
-            for name, param in descendants:
-                result.append((name, param))
+        for param_name, param in self._parameters.items():
+            result.append((prefix + param_name, param))
+        for module_name, module in self._modules.items():
+            descendants = module.named_parameters(prefix + module_name + ".")
+            for param_name, param in descendants:
+                result.append((param_name, param))
         return result
 
     def parameters(self) -> Sequence[Parameter]:
