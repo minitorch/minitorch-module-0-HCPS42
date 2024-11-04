@@ -68,17 +68,17 @@ def log(x: float) -> float:
 def exp(x: float) -> float:
     return math.exp(x)
 
-def log_back(x: float) -> float:
-    return 1 / x
+def log_back(x: float, y: float) -> float:
+    return y / x
 
 def inv(x: float) -> float:
     return 1 / x
 
-def inv_back(x: float) -> float:
-    return -1 / (x ** 2)
+def inv_back(x: float, y: float) -> float:
+    return -y / (x ** 2)
 
-def relu_back(x: float) -> float:
-    return 1 if x > 0 else 0
+def relu_back(x: float, y: float) -> float:
+    return y if x > 0 else 0
 
 
 # ## Task 0.3
