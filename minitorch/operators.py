@@ -51,7 +51,7 @@ def eq(x: float, y: float) -> bool:
     return x == y
 
 def max(x: float, y: float) -> float:
-    return max(x, y)
+    return x if x > y else y
 
 def is_close(x: float, y: float) -> bool:
     return abs(x - y) < 1e-2
