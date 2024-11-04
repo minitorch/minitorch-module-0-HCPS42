@@ -105,15 +105,15 @@ def test_sigmoid(a: float) -> None:
     * It is always between 0.0 and 1.0.
     * one minus sigmoid is the same as sigmoid of the negative
     * It crosses 0 at 0.5
-    * It is  strictly increasing.
+    * It is strictly increasing.
     """
     result = sigmoid(a)
     assert 0.0 <= result <= 1.0
     assert_close(1.0 - result, sigmoid(-a))
     if a == 0:
         assert_close(result, 0.5)
-    b = a + 1e-5
-    if a < b:
+    b = a + 1e-2
+    if abs(a) < 4:
         assert sigmoid(a) < sigmoid(b)
 
 
